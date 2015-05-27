@@ -1,0 +1,38 @@
+{
+  "name": "multiplex-rpc",
+  "version": "1.0.0",
+  "description": "rpc with duplex streams using multiplex",
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dependencies": {
+    "has": "^1.0.0",
+    "multiplex": "^6.2.0",
+    "rpc-stream": "^2.1.1"
+  },
+  "devDependencies": {
+    "concat-stream": "^1.4.8",
+    "tape": "^4.0.0",
+    "through2": "^0.6.5"
+  },
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/substack/multiplex-rpc.git"
+  },
+  "keywords": [
+    "rpc",
+    "multiplex",
+    "stream"
+  ],
+  "author": "substack",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/substack/multiplex-rpc/issues"
+  },
+  "homepage": "https://github.com/substack/multiplex-rpc#readme"
+}

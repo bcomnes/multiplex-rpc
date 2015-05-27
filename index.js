@@ -1,7 +1,5 @@
 var RPC = require('rpc-stream');
 var multiplex = require('multiplex');
-var through = require('through2');
-var duplexer = require('duplexer2');
 var has = require('has');
 
 module.exports = function (api) {
