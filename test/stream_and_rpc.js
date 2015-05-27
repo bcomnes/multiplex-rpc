@@ -4,16 +4,16 @@ var test = require('tape');
 var concat = require('concat-stream');
 var through = require('through2');
 
-test('stream', function (t) {
+test('stream and rpc', function (t) {
     t.plan(1);
     t.once('end', function () {
         server.close();
     });
     var server = net.createServer(function (stream) {
         var rpc = RPC({
-            hello: function () {
+            hello: function (n, x) {
                 var s = through();
-                s.end('whatever');
+                s.end(Buffer(n).fill(x));
                 return s;
             }
         });
@@ -29,8 +29,8 @@ test('stream', function (t) {
         rpc.pipe(c).pipe(rpc);
         
         var client = rpc.wrap([ 'hello:s' ]);
-        client.hello().pipe(concat(function (body) {
-            t.equal(body.toString(), 'whatever');
+        client.hello(20, 'A').pipe(concat(function (body) {
+            t.equal(body.toString(), 'AAAAAAAAAAAAAAAAAAAA');
         }));
     });
 });
