@@ -19,7 +19,6 @@ module.exports = function (api) {
     var prpc = RPC(api); // public interface
     
     var mx = multiplex({ chunked: true });
-    
     irpc.pipe(mx.createSharedStream('0')).pipe(irpc);
     prpc.pipe(mx.createSharedStream('1')).pipe(prpc);
     
@@ -37,6 +36,7 @@ module.exports = function (api) {
         });
         return wrapped;
     };
+    return mx;
     
     function wrapStream (name) {
         return function () {
@@ -47,5 +47,4 @@ module.exports = function (api) {
             return mx.createSharedStream(id);
         };
     }
-    return mx;
 };
