@@ -42,8 +42,7 @@ module.exports = function (api) {
         return function () {
             var args = [].slice.call(arguments);
             var id = String(index++);
-            args.unshift(id, name);
-            iclient.open.apply(null, args);
+            iclient.open(id, name, args);
             return mx.createSharedStream(id);
         };
     }
