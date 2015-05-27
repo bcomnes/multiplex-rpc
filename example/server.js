@@ -1,7 +1,6 @@
 var RPC = require('../');
 var net = require('net');
 var fs = require('fs');
-var once = require('once');
 
 var server = net.createServer(function (stream) {
     var rpc = RPC({
