@@ -7,7 +7,7 @@ module.exports = function (api) {
     var streams = {};
     var irpc = RPC({ // internal rpc
         open: function (id, name, args) {
-            if (!has(api, name) || typeof api[name] !== 'function') return;
+            if (typeof api[name] !== 'function') return;
             var stream = api[name].apply(null, args);
             if (!stream || typeof stream.pipe !== 'function') return;
             stream.pipe(mx.createSharedStream(id)).pipe(stream);
