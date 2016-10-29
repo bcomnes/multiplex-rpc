@@ -15,7 +15,7 @@
   "devDependencies": {
     "concat-stream": "^1.4.8",
     "tape": "^4.0.0",
-    "through2": "^0.6.5"
+    "through2": "^2.0.1"
   },
   "scripts": {
     "test": "tape test/*.js"
