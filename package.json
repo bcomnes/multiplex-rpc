@@ -8,7 +8,6 @@
     "test": "test"
   },
   "dependencies": {
-    "has": "^1.0.0",
     "multiplex": "^6.2.0",
     "rpc-stream": "^2.1.1"
   },

@@ -1,6 +1,5 @@
 var RPC = require('rpc-stream');
 var multiplex = require('multiplex');
-var has = require('has');
 
 module.exports = function (api) {
     var index = 2;
@@ -15,11 +14,11 @@ module.exports = function (api) {
     });
     var iclient = irpc.wrap([ 'open' ]);
     var prpc = RPC(api); // public interface
-    
+
     var mx = multiplex({ chunked: true });
     irpc.pipe(mx.createSharedStream('0')).pipe(irpc);
     prpc.pipe(mx.createSharedStream('1')).pipe(prpc);
-    
+
     mx.wrap = function (methods) {
         var names = methods.map(function (m) {
             return m.split(':')[0];
@@ -27,7 +26,7 @@ module.exports = function (api) {
         var wrapped = prpc.wrap(names);
         methods.forEach(function (m) {
             var parts = m.split(':');
-            var name = parts[0]; 
+            var name = parts[0];
             if (parts[1] === 's') {
                 wrapped[name] = wrapStream(name);
             }
@@ -35,7 +34,7 @@ module.exports = function (api) {
         return wrapped;
     };
     return mx;
-    
+
     function wrapStream (name) {
         return function () {
             var args = [].slice.call(arguments);
